@@ -78,25 +78,34 @@ $(document).ready(function(){
 
 
 
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+document.getElementById("contact-form").addEventListener("submit", function(e) {
     e.preventDefault();
+    
+    // Get the form data
+    const name = document.querySelector('input[name="name"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const subject = document.querySelector('input[name="subject"]').value;
+    const message = document.querySelector('textarea[name="message"]').value;
 
+    // Prepare the form data for Google Forms
     const formData = new FormData();
-    formData.append('entry.<name_entry_id>', document.getElementById('name').value);
-    formData.append('entry.<email_entry_id>', document.getElementById('email').value);
-    formData.append('entry.<subject_entry_id>', document.getElementById('subject').value);
-    formData.append('entry.<message_entry_id>', document.getElementById('message').value);
+    formData.append('entry.YOUR_NAME_FIELD_ID', name);
+    formData.append('entry.YOUR_EMAIL_FIELD_ID', email);
+    formData.append('entry.YOUR_SUBJECT_FIELD_ID', subject);
+    formData.append('entry.YOUR_MESSAGE_FIELD_ID', message);
 
-    fetch('<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjU_4TR2sCn_l0P2typfjHQKYzviMJ_YMPiB1uEGGNuDykjA/viewform?embedded=true" width="640" height="957" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>', {
+    // Send the data to Google Forms
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSfjU_4TR2sCn_l0P2typfjHQKYzviMJ_YMPiB1uEGGNuDykjA/formResponse', {
         method: 'POST',
         mode: 'no-cors',
         body: formData
     }).then(() => {
-        document.getElementById('status').innerText = 'Message sent successfully!';
+        alert('Message sent successfully!');
     }).catch(() => {
-        document.getElementById('status').innerText = 'Error sending message.';
+        alert('There was an error sending the message.');
     });
 });
+
 
 
 
