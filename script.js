@@ -98,7 +98,7 @@ document.querySelector('form').addEventListener('submit', function (e) {
     });
     
     // Send the data using Fetch API
-    fetch('https://your-backend-url.com', {
+    fetch('<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjU_4TR2sCn_l0P2typfjHQKYzviMJ_YMPiB1uEGGNuDykjA/viewform?embedded=true" width="640" height="957" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
