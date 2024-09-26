@@ -72,15 +72,51 @@ $(document).ready(function(){
     });
 });
 
+
+
+
+
+
+
 // Add this function to handle form submission
-function handleSubmit(event) {
-    event.preventDefault();
-    
-    // Get form data
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Collect form data
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const subject = document.getElementById('subject').value;
     const message = document.getElementById('message').value;
+
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('subject', subject);
+    formData.append('message', message);
+
+    // Send the form data using fetch
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSfjU_4TR2sCn_l0P2typfjHQKYzviMJ_YMPiB1uEGGNuDykjA/formResponse', {
+        method: 'POST',
+        body: formData
+    }).then(response => {
+        if (response.ok) {
+            alert('Message sent successfully!');
+        } else {
+            alert('Failed to send message.');
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while sending the message.');
+    });
+});
+</script>
+
+
+
+
+
 
     // You can add your own logic here to handle the form submission
     // For example, you could send the data to a server or display a success message
