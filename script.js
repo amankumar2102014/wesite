@@ -96,15 +96,15 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
 
     // Send the data to Google Forms
     fetch('https://docs.google.com/forms/d/e/1FAIpQLSfjU_4TR2sCn_l0P2typfjHQKYzviMJ_YMPiB1uEGGNuDykjA/formResponse', {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
-    }).then(() => {
-        alert('Message sent successfully!');
-    }).catch(() => {
-        alert('There was an error sending the message.');
-    });
+    method: 'POST',
+    mode: 'no-cors',
+    body: formData
+}).then(() => {
+    window.location.href = "thank-you.html"; // Redirect to a thank-you page
+}).catch(() => {
+    alert('There was an error sending the message.');
 });
+
 
 
 
