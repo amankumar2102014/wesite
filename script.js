@@ -87,7 +87,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     formData.append('entry.<subject_entry_id>', document.getElementById('subject').value);
     formData.append('entry.<message_entry_id>', document.getElementById('message').value);
 
-    fetch('https://docs.google.com/forms/d/e/<google_form_id>/formResponse', {
+    fetch('<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjU_4TR2sCn_l0P2typfjHQKYzviMJ_YMPiB1uEGGNuDykjA/viewform?embedded=true" width="640" height="957" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>', {
         method: 'POST',
         mode: 'no-cors',
         body: formData
