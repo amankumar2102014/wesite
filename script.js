@@ -96,10 +96,10 @@ document.getElementById('contactForm').addEventListener('submit', function(event
 
     // Create a FormData object
     const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('subject', subject);
-    formData.append('message', message);
+    formData.append('entry.1234567890', name); // Replace with your form's entry ID
+    formData.append('entry.0987654321', email); // Replace with your form's entry ID
+    formData.append('entry.1122334455', subject); // Replace with your form's entry ID
+    formData.append('entry.5566778899', message); // Replace with your form's entry ID
 
     // Send the form data using fetch
     fetch('https://docs.google.com/forms/d/e/1FAIpQLSfjU_4TR2sCn_l0P2typfjHQKYzviMJ_YMPiB1uEGGNuDykjA/formResponse', {
