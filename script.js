@@ -78,8 +78,11 @@ $(document).ready(function(){
 
 
 
-// Add this function to handle form submission
-<script>
+
+
+
+
+
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -111,7 +114,13 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         alert('An error occurred while sending the message.');
     });
 });
-</script>
+
+
+
+
+
+
+           
 
 
 
