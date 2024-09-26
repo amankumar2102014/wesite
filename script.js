@@ -85,43 +85,36 @@ $(document).ready(function(){
 
 
 
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    // Collect form data
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-
-    // Create a FormData object
-    const formData = new FormData();
-    formData.append('entry.1234567890', name); // Replace with your form's entry ID
-    formData.append('entry.0987654321', email); // Replace with your form's entry ID
-    formData.append('entry.1122334455', subject); // Replace with your form's entry ID
-    formData.append('entry.5566778899', message); // Replace with your form's entry ID
-
-    // Send the form data using fetch
-    fetch('https://docs.google.com/forms/d/e/1FAIpQLSfjU_4TR2sCn_l0P2typfjHQKYzviMJ_YMPiB1uEGGNuDykjA/formResponse', {
+document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevents the default form submission
+    
+    // Gather form data
+    const formData = new FormData(this);
+    const data = {};
+    
+    // Convert FormData to JSON object
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+    
+    // Send the data using Fetch API
+    fetch('https://your-backend-url.com', {
         method: 'POST',
-        body: formData
-    }).then(response => {
-        if (response.ok) {
-            alert('Message sent successfully!');
-        } else {
-            alert('Failed to send message.');
-        }
-    }).catch(error => {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log('Success:', result);
+        alert('Message sent successfully!');
+    })
+    .catch(error => {
         console.error('Error:', error);
-        alert('An error occurred while sending the message.');
+        alert('There was an error sending the message.');
     });
 });
-
-
-
-
-
-
 
 
 
