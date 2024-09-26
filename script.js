@@ -83,6 +83,8 @@ $(document).ready(function(){
 
 
 
+
+
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -114,6 +116,13 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         alert('An error occurred while sending the message.');
     });
 });
+
+
+
+
+
+
+
 
 
 
