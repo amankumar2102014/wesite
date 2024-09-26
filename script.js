@@ -78,47 +78,34 @@ $(document).ready(function(){
 
 
 
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
+    const formData = new FormData();
+    formData.append('entry.<name_entry_id>', document.getElementById('name').value);
+    formData.append('entry.<email_entry_id>', document.getElementById('email').value);
+    formData.append('entry.<subject_entry_id>', document.getElementById('subject').value);
+    formData.append('entry.<message_entry_id>', document.getElementById('message').value);
 
-
-
-
-
-
-document.querySelector('form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevents the default form submission
-    
-    // Gather form data
-    const formData = new FormData(this);
-    const data = {};
-    
-    // Convert FormData to JSON object
-    formData.forEach((value, key) => {
-        data[key] = value;
-    });
-    
-    // Send the data using Fetch API
-    fetch('<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjU_4TR2sCn_l0P2typfjHQKYzviMJ_YMPiB1uEGGNuDykjA/viewform?embedded=true" width="640" height="957" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>', {
+    fetch('https://docs.google.com/forms/d/e/<google_form_id>/formResponse', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(result => {
-        console.log('Success:', result);
-        alert('Message sent successfully!');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error sending the message.');
+        mode: 'no-cors',
+        body: formData
+    }).then(() => {
+        document.getElementById('status').innerText = 'Message sent successfully!';
+    }).catch(() => {
+        document.getElementById('status').innerText = 'Error sending message.';
     });
 });
 
 
 
 
+
+
+
+
+   
 
 
 
