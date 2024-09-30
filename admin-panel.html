@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        form { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <form id="uploadProfilePicForm">
+        <label>Upload Profile Picture:</label>
+        <input type="file" id="profilePicInput" accept="image/*">
+        <button type="button" onclick="uploadProfilePic()">Upload</button>
+    </form>
+    <form id="uploadResumeForm">
+        <label>Upload Resume (PDF):</label>
+        <input type="file" id="resumeInput" accept=".pdf">
+        <button type="button" onclick="uploadResume()">Upload</button>
+    </form>
+
+    <h3>Preview:</h3>
+    <img id="profilePicPreview" src="" alt="Profile Pic" style="max-width: 150px; display:none;">
+    <p><a id="resumeLink" href="#" target="_blank" style="display:none;">View Resume</a></p>
+
+    <script>
+        function uploadProfilePic() {
+            const profilePicInput = document.getElementById('profilePicInput');
+            const profilePic = profilePicInput.files[0];
+
+            if (profilePic) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePicPreview').src = e.target.result;
+                    document.getElementById('profilePicPreview').style.display = 'block';
+                };
+                reader.readAsDataURL(profilePic);
+            }
+        }
+
+        function uploadResume() {
+            const resumeInput = document.getElementById('resumeInput');
+            const resume = resumeInput.files[0];
+
+            if (resume) {
+                const resumeLink = document.getElementById('resumeLink');
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const url = URL.createObjectURL(resume);
+                    resumeLink.href = url;
+                    resumeLink.style.display = 'block';
+                };
+                reader.readAsDataURL(resume);
+            }
+        }
+    </script>
+</body>
+</html>
